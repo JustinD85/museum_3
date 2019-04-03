@@ -17,10 +17,6 @@ class PatronTest < Minitest::Test
     assert_equal "Bob", bob.name
   end
 
-  def test_it_has_age
-    assert_equal 20, bob.age
-  end
-
   def test_it_has_money_to_spend
     assert_equal 20, bob.spending_money
   end

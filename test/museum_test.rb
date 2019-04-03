@@ -63,4 +63,23 @@ class MuseumTest < Minitest::Test
     assert_equal expected, dmns.patrons_by_exhibit_interest
   end
 
+  def test_it_can_earn_revenue
+    tj = Patron.new("TJ", 16)
+    tj.add_interest("IMAX")
+    dmns.admit(tj)
+    assert_equal 40, dmns.revenue
+    assert_equal 1, tj.spending_money
+
+  end
+
+  def test_it_can_return_hash_of_patrons_that_went_to_exhibit
+    tj = Patron.new("TJ", 16)
+    tj.add_interest("IMAX")
+    dmns.admit(tj)
+
+    expected = {gems_and_minerals=>[bob],dead_sea_scrolls=>[bob],imax=>[sally,tj]}
+
+    assert_equal expected, dmns.patrons_of_exhibits
+  end
+
 end
